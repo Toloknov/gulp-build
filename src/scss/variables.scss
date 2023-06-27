@@ -1,0 +1,126 @@
+@import "./layout.scss";
+
+:root {
+  --color-1: #000000;
+  --color-2: #fffcfc;
+  --color-3: #808080;
+  --color-4: #f6a607;
+  --gap: 30px;
+}
+
+.hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+@keyframes showBlock {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.input-reset {
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  border-radius: 0;
+  background-color: #fff;
+
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    display: none;
+  }
+}
+.disable-scroll {
+  position: relative;
+  overflow: hidden;
+  height: 100vh;
+}
+
+.modal {
+  height: 100vh;
+  width: 100vw;
+  background-color: #00000080;
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  
+  &_box {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 15px 50px 25px 50px;
+    position: relative;
+
+  }
+
+  &_cross {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    transform: rotate(-45deg);
+    &::after,
+    &::before {
+      content: "";
+      display: block;
+      height: 4.5px;
+      width: 15px;
+      background-color: var(--color-4);
+    }
+    &::before {
+      transform: rotate(90deg) translateX(4.5px);
+    }
+  }
+
+}
+
+.wrapper {
+  max-width: calc(1170px + calc(var(--gap) * 2));
+  margin: 0 auto;
+  padding: 0 var(--gap);
+  @include mobile {
+    padding: 0 calc(var(--gap) / 2);
+  }
+}
+.burger {
+  &_menu {
+    align-self: center;
+    flex-shrink: 0;
+    z-index: 10;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    width: 60px;
+    height: 60px;
+    @include small-tablet {
+      position: relative;
+      display: block;
+    }
+    .header.open & {
+      width: 15px;
+      height: 15px;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      background: transparent;
+      transform: rotate(45deg);
+    }
+  }
+}
+
